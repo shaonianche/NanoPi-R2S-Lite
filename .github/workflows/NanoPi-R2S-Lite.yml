@@ -23,7 +23,7 @@ env:
 jobs:
   Build:
     runs-on: ubuntu-20.04
-    if: github.repository == 'shaonianche/NanoPi-R2S'
+    if: github.repository == 'shaonianche/NanoPi-R2S-Lite'
     outputs:
       OPENWRTROOT: ${{ steps.update.outputs.OPENWRTROOT }}
       PLATFORM: ${{ steps.compile.outputs.PLATFORM }}
