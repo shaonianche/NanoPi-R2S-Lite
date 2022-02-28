@@ -181,7 +181,7 @@ jobs:
   Upload:
     needs: [Build]
     runs-on: ubuntu-20.04
-    if: github.repository == 'shaonianche/NanoPi-R2S'
+    if: github.repository == 'shaonianche/NanoPi-R2S-Lite'
     steps:
       - name: Checkout
         uses: actions/checkout@main
