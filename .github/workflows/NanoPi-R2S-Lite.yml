@@ -3,10 +3,8 @@ name: NanoPi-R2S-Lite
 on:
   repository_dispatch:
   workflow_dispatch:
-  #schedule:
-    #- cron: 0 17 * * *
-  # watch:
-  #   types: started
+  schedule:
+    - cron: 0 13 * * 5
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
