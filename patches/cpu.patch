@@ -1,3 +1,4 @@
+
 From 901f9590fe0d81318efb945441b96d43e17cd763 Mon Sep 17 00:00:00 2001
 From: GitHub <git@github.com>
 Date: Mon, 8 Nov 2021 10:20:58 +0800
@@ -30,7 +31,7 @@ index 00000000..c8d9f132
 +@@ -109,21 +109,11 @@
 + 		compatible = "operating-points-v2";
 + 		opp-shared;
-+ 
++
 +-		opp-408000000 {
 +-			opp-hz = /bits/ 64 <408000000>;
 +-			opp-microvolt = <950000>;
@@ -60,10 +61,10 @@ index 00000000..c8d9f132
 +-			clock-latency-ns = <40000>;
 +-		};
 + 	};
-+ 
++
 + 	amba {
-+-- 
++--
 +2.25.1
 +
--- 
+--
 2.25.1

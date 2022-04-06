@@ -14,6 +14,7 @@ ln -sf ./feeds/luci/applications/luci-app-cpufreq ./package/feeds/luci/luci-app-
 sed -i 's,1608,1800,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 sed -i 's,2016,2208,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
 sed -i 's,1512,1608,g' feeds/luci/applications/luci-app-cpufreq/root/etc/uci-defaults/cpufreq
+rm -rf ./target/linux/rockchip/armv8/base-files/etc/hotplug.d
 
 # Clone community packages to package/community
 mkdir package/community
@@ -38,10 +39,6 @@ git clone --depth=1 https://github.com/UnblockNeteaseMusic/luci-app-unblocknetea
 # Add luci-app-vssr <M>
 git clone --depth=1 https://github.com/jerrykuku/lua-maxminddb.git
 git clone --depth=1 https://github.com/jerrykuku/luci-app-vssr
-
-# Add mentohust & luci-app-mentohust
-git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
-git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk
 
 # Add luci-proto-minieap
 git clone --depth=1 https://github.com/ysc3839/luci-proto-minieap
@@ -97,7 +94,7 @@ git clone --depth=1 https://github.com/tindy2013/openwrt-subconverter
 # svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-18.06-k5.4/package/kernel/rtl88x2bu
 
 # Add luci-app-smartdns & smartdns
-svn co https://github.com/281677160/openwrt-package/trunk/feeds/luci/applications/luci-app-smartdns
+svn co https://github.com/281677160/openwrt-package/trunk/luci-app-smartdns
 
 # Add apk (Apk Packages Manager)
 svn co https://github.com/openwrt/packages/trunk/utils/apk
@@ -170,11 +167,11 @@ pushd po2lmo
 make && sudo make install
 popd
 
-# rm -rf ./package/kernel/linux/modules/video.mk
-# wget -P package/kernel/linux/modules/ https://github.com/immortalwrt/immortalwrt/raw/master/package/kernel/linux/modules/video.mk
+rm -rf ./package/kernel/linux/modules/video.mk
+wget -P package/kernel/linux/modules/ https://github.com/immortalwrt/immortalwrt/raw/master/package/kernel/linux/modules/video.mk
 
 # Change default shell to zsh
-sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
+# sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
 
 # 添加风扇控制器
 wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3328/base-files/etc/init.d/fa-rk3328-pwmfan
@@ -186,20 +183,14 @@ chmod 777 target/linux/rockchip/armv8/base-files/usr/bin/start-rk3328-pwm-fan.sh
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
 sed -i '/uci commit system/i\uci set system.@system[0].hostname='FusionWrt'' package/lean/default-settings/files/zzz-default-settings
-sed -i "s/OpenWrt /DHDAXCW @ FusionWrt /g" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/OpenWrt /shaonianche @ FusionWrt /g" package/lean/default-settings/files/zzz-default-settings
 # Test kernel 5.10
-# sed -i 's/5.4/5.10/g' target/linux/rockchip/Makefile
-
-# upgrade the kernel
-#pushd include
-#rm -rf kernel-5.4
-#wget https://raw.githubusercontent.com/DHDAXCW/lede/master/include/kernel-5.4
-#popd
+# sed -i 's/5.15/5.4/g' target/linux/rockchip/Makefile
 
 # 修复r2s phy 复位断开无响应
-pushd target/linux/rockchip/patches-5.4
-cp -f $GITHUB_WORKSPACE/scripts/patchs/999-r2s-phy.patch 999-r2s-phy.patch
-popd
+# pushd target/linux/rockchip/patches-5.4
+# cp -f $GITHUB_WORKSPACE/scripts/patchs/999-r2s-phy.patch 999-r2s-phy.patch
+# popd
 
 # Custom configs
 git am $GITHUB_WORKSPACE/patches/*.patch
