@@ -194,7 +194,7 @@ sed -i "s/OpenWrt /shaonianche @ FusionWrt /g" package/lean/default-settings/fil
 
 # Custom configs
 git am $GITHUB_WORKSPACE/patches/*.patch
-echo -e " DHDAXCW's FusionWrt built on "$(date +%Y.%m.%d)"\n -----------------------------------------------------" >>package/base-files/files/etc/banner
+echo -e "FusionWrt built on "$(date +%Y.%m.%d)"\n -----------------------------------------------------" >>package/base-files/files/etc/banner
 echo 'net.bridge.bridge-nf-call-iptables=0' >>package/base-files/files/etc/sysctl.conf
 echo 'net.bridge.bridge-nf-call-ip6tables=0' >>package/base-files/files/etc/sysctl.conf
 echo 'net.bridge.bridge-nf-call-arptables=0' >>package/base-files/files/etc/sysctl.conf
